@@ -80,3 +80,4 @@ cython_debug/
 # 환경 변수
 .env
 settings.json
+.env __pycache__/ *.pyc .ipynb_checkpoints/ .venv/ venv/ node_modules/ .DS_Store
