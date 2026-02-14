@@ -12,4 +12,5 @@ dependencies = [
     "faiss-cpu",
     "python-dotenv",
     "pypdf",
+    "langchain-openai>=0.3.18",
 ]

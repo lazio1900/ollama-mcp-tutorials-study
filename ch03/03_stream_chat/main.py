@@ -1,8 +1,11 @@
 from langchain_ollama import ChatOllama
 from langchain_core.messages import HumanMessage
 
+POD_ID = "rauik3dn1og4en"
+BASE = f"https://{POD_ID}-11434.proxy.runpod.net"
+
 # 1. LLM 모델 객체 생성
-llm = ChatOllama(model="qwen3:8b")
+llm = ChatOllama(model="qwen3:8b", base_url = BASE)
 
 # 2. 사용자 입력을 받아 모델에 직접 전달 (스트리밍 방식) 
 while True: 
@@ -16,6 +19,6 @@ while True:
     # 4. 스트리밍 응답 받기 
     print("답변:", end="", flush=True) 
     for chunk in llm.stream(messages): 
-        print(chunk.content, end="", flush=True) 
+        print(chunk.content, end="", flush=False) 
 
     print()  # 줄바꿈 

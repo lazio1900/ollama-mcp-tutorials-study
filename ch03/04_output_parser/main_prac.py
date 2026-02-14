@@ -4,16 +4,16 @@ from langchain_core.messages import HumanMessage
 from langchain_core.output_parsers import JsonOutputParser
 import re
 
-POD_ID = "kl2h3oy6yd1v7u"
+POD_ID = "0wsw8xm6ucb3vz"
 BASE = f"https://{POD_ID}-11434.proxy.runpod.net"
 
-llm = ChatOllama(model="qwen3:8b", base_url = BASE)
-
+llm = ChatOllama(model = "qwen3:8b", base_url = BASE)
 
 # 2. 모델 출력 형식 지정
 class JsonResponse(BaseModel):
     name: str = Field(description="name of thing")
     date: str = Field(description="date of thing's creation")
+
 
 # 3. JsonOutputParser 생성
 parser = JsonOutputParser(pydantic_object=JsonResponse)
@@ -21,12 +21,12 @@ parser = JsonOutputParser(pydantic_object=JsonResponse)
 # 4. 사용자 입력을 받아 모델에 직접 전달
 while True:
     user_input = input("질문을 입력하세요 (종료: exit): ")
-    if user_input.lower() == "exit":
+    if user_input.lower() == 'exit':
         break
 
     # 5. 프롬프트 생성
     formatted_prompt = "아래 질문에 대해 name(모델 이름)과 date(만들어진 시기)를 반드시 JSON 형식으로 답변하세요."
-    formatted_prompt += f" 질문: {user_input} \n "
+    formatted_prompt += f"질문: {user_input} \n"
     formatted_prompt += f"{parser.get_format_instructions()}"
     messages = [HumanMessage(content=formatted_prompt)]
 

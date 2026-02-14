@@ -1,10 +1,17 @@
 from langchain_ollama import OllamaEmbeddings
 from sklearn.metrics.pairwise import cosine_similarity
 
+
+POD_ID = "0wsw8xm6ucb3vz"
+BASE = f"https://{POD_ID}-11434.proxy.runpod.net"
+
+# llm = ChatOllama(model = "qwen3:8b", base_url = BASE)
+
+
 # 1. 올라마 임베딩 모델들을 사용할 수 있도록 준비
-bge_embed = OllamaEmbeddings(model="bge-m3")
-nomic_embed = OllamaEmbeddings(model="nomic-embed-text")
-llm_embed = OllamaEmbeddings(model="qwen3:8b")
+bge_embed = OllamaEmbeddings(model="bge-m3", base_url=BASE)
+nomic_embed = OllamaEmbeddings(model="nomic-embed-text", base_url=BASE)
+llm_embed = OllamaEmbeddings(model="qwen3:8b", base_url=BASE)
 
 # 2. 사용자로부터 문장 3개를 입력 받음
 sentences = [input(f"문장 {i + 1}을 입력하세요: ") for i in range(3)]

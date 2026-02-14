@@ -5,7 +5,7 @@ description = "간단한 Ollama 챗봇 예제"
 requires-python = ">=3.10"
 dependencies = [
     "langchain-core==0.3.61",
-    "langchain-ollama==0.3.3",
+    "langchain-openai",
     "langchain==0.3.25",
     "beautifulsoup4",
     "python-dotenv",

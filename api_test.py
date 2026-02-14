@@ -1,7 +1,7 @@
 import json
 import requests
 
-POD_ID = "tpi63brhybnlxg"
+POD_ID = "rauik3dn1og4en"
 BASE = f"https://{POD_ID}-11434.proxy.runpod.net"
 
 with requests.post(

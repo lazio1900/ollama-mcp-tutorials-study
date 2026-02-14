@@ -4,6 +4,13 @@ from langchain_ollama import ChatOllama
 from typing import Iterable
 from langchain_core.runnables import RunnableGenerator
 
+
+POD_ID = "0wsw8xm6ucb3vz"
+BASE = f"https://{POD_ID}-11434.proxy.runpod.net"
+
+llm = ChatOllama(model = "qwen3:8b", base_url = BASE)
+
+
 # 1. 메시지 객체 기반 프롬프트 템플릿 구성
 prompt = ChatPromptTemplate.from_messages(
     [
@@ -12,8 +19,8 @@ prompt = ChatPromptTemplate.from_messages(
     ]
 )
 
-# 2. LLM 모델 설정
-llm = ChatOllama(model="qwen3:8b")
+# # 2. LLM 모델 설정
+# llm = ChatOllama(model="qwen3:8b")
 
 # 3. 출력 파서 설정
 def replace_word_with_emoji(text: str) -> str:
