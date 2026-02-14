@@ -15,5 +15,5 @@ dependencies = [
     "langgraph",
     "python-dotenv",
     "langchain-community",
-    "typing-extensions"
+    "typing-extensions",
 ]

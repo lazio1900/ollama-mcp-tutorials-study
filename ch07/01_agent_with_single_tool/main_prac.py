@@ -7,8 +7,7 @@ from langchain_core.messages import AIMessage, HumanMessage
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 
-
-# 환경 변수 로드 (.env 파일에서 API 키 등을 로드)
+# 환경변수 로드 
 load_dotenv()
 
 # 1. ReAct 에이전트를 위한 프롬프트 템플릿 생성
@@ -36,17 +35,18 @@ prompt = ChatPromptTemplate.from_template(
 
 # 2. OpenAI 초기화
 llm = ChatOpenAI(
-    model="gpt-4o",
-    temperature=0,
+    model = "gpt-4o",
+    temperature = 0
 )
 
 # 3. 에이전트가 사용할 도구들 초기화
-# 3-1. Tavily 검색 도구: 웹 검색을 수행
+# 3-1. Tavily 검색 도구 : 웹검색 수행
 search_tool = Tool(
-    name="WebSearch",
+    name = "WebSearch",
     func=TavilySearchResults().run,
     description="This is a real-time web search tool (based on Tavily service)",
 )
+
 
 # 3-2. 도구 리스트 생성
 tools = [search_tool]
@@ -54,7 +54,7 @@ tools = [search_tool]
 # 4. ReAct 에이전트 생성 및 실행기 설정
 agent = create_react_agent(llm, tools, prompt)
 agent_executor = AgentExecutor(
-    agent=agent, tools=tools, verbose=True, handle_parsing_errors=True
+    agent=agent, tools = tools, verbose=True, handle_parsing_errors=True
 )
 
 # 5. 대화 기록을 저장할 리스트 초기화
@@ -65,10 +65,9 @@ print("기상학자 AI와 대화를 시작합니다.")
 
 while True:
     # 6-1. 사용자 입력 받기
-    user_input = input("질문을 입력하세요 (종료: exit): ")
-    if user_input.lower() == "exit":
+    user_input = input("질문을 입력하세요 (종료 : e):")
+    if user_input.lower() == "e":
         break
-
     try:
         # 6-2. 에이전트 실행 및 응답 생성
         result = agent_executor.invoke(
@@ -84,4 +83,4 @@ while True:
         chat_history.append(AIMessage(content=output_text))
 
     except Exception as e:
-        print(f"오류가 발생했습니다: {e}")
+        print(f"오류가 발생했습니다: {e}")        
